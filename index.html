@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map Explorer</title>
+    <title>Yangon sale department</title>
     <style>
         :root {
-            --glass-color: rgba(255, 255, 255, 0.2);
+            --glass-color: rgba(80, 40, 40, 0.2);
             --glass-border: 1px solid rgba(255, 255, 255, 0.3);
             --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             --glass-blur: blur(10px);
@@ -26,7 +26,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            color: white;
+            color: rgb(255, 255, 255);
             overflow: hidden;
         }
         
@@ -75,6 +75,7 @@
             -webkit-backdrop-filter: var(--glass-blur);
             border: var(--glass-border);
             box-shadow: var(--glass-shadow);
+            height: 70vh;
         }
         
         #map {
@@ -178,6 +179,17 @@
                 max-height: 100px;
             }
         }
+        
+        /* Copyright Footer */
+        .copyright {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+        }
     </style>
 </head>
 <body>
@@ -199,21 +211,20 @@
             
             <!-- Location 1 Info -->
             <div id="location-info-1" class="location-info">
-                <button class="close-btn">&times;</button>
-                <h3>Location 1</h3>
-                <div class="location-line" data-place="sq8b6m6">sq8b6m6</div>
-                <div class="location-line" data-place="eon5a0">eon5a0</div>
-                <div class="location-line" data-place="sae9p0">sae9p0</div>
-                <div class="location-line" data-place="efgno3q">efgno3q</div>
-                <div class="location-line" data-place="qbc">qbc</div>
-                <div class="location-line" data-place="owogo5">owogo5</div>
-                <div class="location-line" data-place="ooewoo">ooewoo</div>
-                <div class="location-line" data-place="òa">òa</div>
+                <h3>Van-1</h3>
+                <div class="location-line" data-place="Dagon Seikkan">Dagon Seikkan</div>
+                <div class="location-line" data-place="South Dagon">South Dagon</div>
+                <div class="location-line" data-place="East Dagon">East Dagon</div>
+                <div class="location-line" data-place="North Dagon">North Dagon</div>
+                <div class="location-line" data-place="Hlaing ">Hlaing</div>
+                <div class="location-line" data-place="Kamayut">Kamayut</div>
+                <div class="location-line" data-place="Tharkayta">Tharkayta</div>
+                <div class="location-line" data-place="Bago">Bago</div>
             </div>
-            
-            <!-- You would add similar divs for locations 2-5 -->
         </div>
     </div>
+
+    <div class="copyright">Build by KaungKhantKo © 2023</div>
 
     <!-- Load Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFb2kM068CF2McdkrdjHJivAK9h60Zx6Y&libraries=places&callback=initMap" async defer></script>
@@ -224,102 +235,175 @@
         let infoWindow;
         
         function initMap() {
-            // Create a new map centered on a default location
+            // Define the new map styles
+            const mapStyles = [
+                {
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#242f3e"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#746855"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#242f3e"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative.locality",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#d59563"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#d59563"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#263c3f"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#6b9a76"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#38414e"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#212a37"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9ca5b3"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#746855"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#1f2835"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#f3d19c"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#2f3948"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.station",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#d59563"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#17263c"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#515c6d"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#17263c"
+                        }
+                    ]
+                }
+            ];
+
+            // Create a new map with the improved styles
             map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 16.8409, lng: 96.1735}, // Default to Yangon, Myanmar
+                center: {lat: 16.8409, lng: 96.1735},
                 zoom: 12,
-                styles: [
-                    {
-                        "featureType": "all",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#ffffff"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "color": "#000000"
-                            },
-                            {
-                                "weight": 2
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "labels.icon",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            },
-                            {
-                                "weight": 0.4
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry.stroke",
-                        "stylers": [
-                            {
-                                "color": "#0f0f0f"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#0f0f0f"
-                            }
-                        ]
-                    }
-                ]
+                styles: mapStyles,
+                gestureHandling: "greedy"
             });
             
             infoWindow = new google.maps.InfoWindow();
